@@ -73,7 +73,10 @@ const dummyData = [
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyData);
 
-  const dataId = useRef(0);
+  const dataId = useRef(6);
+  // 더미 데이터 id가 1~5 이므로 useRef의 초기값을 0으로 지정하면 id값이 서로 겹쳐
+  // Encountered two children with the same key 버그가 발생하기 때문
+
   // CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({

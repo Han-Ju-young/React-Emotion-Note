@@ -23,7 +23,12 @@ const Home = () => {
       const lastDay = new Date(
         curDate.getFullYear(),
         curDate.getMonth() + 1,
-        0
+        0,
+        23,
+        59,
+        59
+        // 시간을 비교할 때 시 분 초까지 비교하기 때문에 23, 59, 59까지 써주어야
+        // 해당 달의 마지막날에 쓴 일기도 제대로 목록에 추가되는 것임
       ).getTime();
 
       setData(

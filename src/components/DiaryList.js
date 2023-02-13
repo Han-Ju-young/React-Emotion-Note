@@ -32,7 +32,11 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
-  const [sortType, setSortType] = useState("lastest");
+  const [sortType, setSortType] = useState("latest");
+  // 새글을 작성하면 최신순이기때문에 맨 위에 새로작성한 글이 떠야하는데
+  // 오래된순을 클릭하고 다시 최신순으로 정렬해야만 정령이 되는 이유는
+  // lastest가 아닌 latest인데 오타로 인해 오류가 발생한 것임
+  // 타입스크립트에서는 오타에 관한 오류를 잡을 수 있음
   const [filter, setFilter] = useState("all");
 
   const getProcessedDiaryList = () => {
