@@ -1,3 +1,5 @@
+import React from "react";
+
 const EmotionItem = ({
   emotion_id,
   emotion_img,
@@ -21,4 +23,5 @@ const EmotionItem = ({
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);
+// 감정들은 리랜더 될 필요 없으므로 React.memo로 강화된 컴포넌트로 만들어줌

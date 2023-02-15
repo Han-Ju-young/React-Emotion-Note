@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import MyButton from "./MyButton";
 
@@ -35,4 +36,6 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
+// 필더를 바꾸면 아이템의 위치만 바꾸면 되는데 아이템 각각도 리랜더 됨
+// 이를 막기 위해 DiaryItem 컴포넌트에 React.memo 적용

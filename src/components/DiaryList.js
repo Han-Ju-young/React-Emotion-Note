@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
@@ -14,7 +14,7 @@ const filterOptionList = [
   { value: "bad", name: "안좋은 감정만" },
 ];
 
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
     <select
       className="ControlMenu"
@@ -28,7 +28,10 @@ const ControlMenu = ({ value, onChange, optionList }) => {
       ))}
     </select>
   );
-};
+});
+// Home.js 의 하위 컴포넌트인 DiaryList.js는 home이 리랜더 되면 같이 리랜더 됨
+// DiaryList.js안에 있는 ControlMenu는 리랜더 될 필요 없음
+// -> 따라서 React.memo 로 ControlMenu를 감싸주면 리랜더 되지 않음
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DiaryDispatchContext } from "../App";
 
@@ -16,9 +16,14 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [date, setDate] = useState(getStringDate(new Date()));
 
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
-  const handleClickEmote = (emotion) => {
+  const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
+  // 함수는 useState를 통해서 전달받은 상태변화 함수가 아니거나
+  // useCallback으로 묶어놓은 함수가 아니라면 기본적으로 컴포넌트 랜더링될 때
+  // 다시 생성되서 React.memo의 강화된 컴포넌트에도 랜더링을 발생시킴
+  // -> 해당 함수의 구현부에 가서 함수를 useCallback으로 묶어주면 해결 됨
+
   const navigate = useNavigate();
 
   const handleSubmit = () => {
